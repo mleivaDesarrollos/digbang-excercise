@@ -1,33 +1,30 @@
-# Ejercicio React
+# Algunas notas del DEV
 
-## Ejercicio
-### Diseño
-![UI](/ejercicio.jpg?raw=true)
-* Los valores con bordes (Monto Total y Plazo) son inputs de numeros.
-* Los textos Obtené Crédito y Ver detalle de cuotas son botones.
-* La font utilizada es Montserrat (agregarla al html).
+- Como en la consigna del proyecto no se hablo de utilizar ninguna libreria
+externa mas que **rc-slider** no se utilizó ninguna otra librería adicional
 
-### Implementación
-1. Maquetar el diseño provisto creando los componentes que crea necesarios.
-2. Implementar la siguiente funcionalidad:
-    1. Utilizar la libreria [rc-slider](http://react-component.github.io/slider/) para dar funcionalidad a los sliders.
-    2. Al mover los sliders se deberan actualizar los valores de Monto Total y Plazo al valor actual del slider.
-    3. Los inputs de Monto Total y Plazo fijo deberán ser editables por el usuario y modificarl el valor del slider.
-    3. Deberá actualizarse el valor de Cuota fija por mes siendo este valor el Monto total seleccionado, dividido el Plazo seleccionado.
+- Configuré Prettier y Eslint para no preocuparme por el formateo del código,
+al finalizar el proyecto lo removí de las dependencias.
 
-## Codigo provisto
+- Si hubiera sido posible para la parte de CSS hubiera optado por utilizar
+una librería como **react-jss**
 
-### Estructura de archivos
+- Según como estaba estructurando el proyecto, me iba a encontrar con la
+situación de tener un prop-drilling para llegar a determinados componentes. Mi
+estrategia ante esos escenarios es utilizar redux para controlar estados.
+En apps pequeñas igual no es muy recomendado. En el caso de este proyecto
+decidi por usar la estrategia useContext + useReducer. Tambien podría haberlo
+manejado con useState si lo quería.
 
-````
-build/
-src/
-|- index.js _______________________________ # entrada de la aplicación
-|- App.js _________________________________ # Componente principal
-````
+- El useContext tiene algunos temas de rendimiento por rerender, no es mi primera
+opción por ese motivo
 
-### Instalación
+- Por una cuestión de tabulación el rc-slider estaba generandome comportamientos
+extraños. Al salir del input con tab, y teniendo como siguiente elemento el slider
+al tocar el slider me cambiaba el input que recien habia ingresado por otro valor.
+Ejemplo, ponia 5003 en el input, apretaba tab y el input se cambiaba a 5002,
+me imagino que ciertos steps del slider no son tan sensibles y por eso sucedia
+esto. Mi solución ahi fue aplicar un tabIndex -1 para que no entre en foco.
 
-1. Descargar el codigo de Github con la opción de descarga o hacer un fork del repositorio (a gusto). 
-2. `yarn` o `npm install` para instalar paquetes npm 
-3. `yarn start` o `npm start` para inicializar server de desarrollo
+- Muy buen desafio, me llevo mas tiempo del que esperaba pero me voy satisfecho
+al completarlo.
