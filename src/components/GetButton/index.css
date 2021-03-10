@@ -1,0 +1,12 @@
+.get-button {
+  background-color: #17aa8d;
+  text-transform: uppercase;
+  outline: none;
+  border: none;
+  color: white;
+  padding: 10px 0;
+  font-size: 1.5rem;
+  letter-spacing: -0.02cm;
+  font-weight: 600;
+  flex: 1 1 70%;
+}

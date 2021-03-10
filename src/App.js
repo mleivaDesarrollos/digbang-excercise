@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import { useMemo, useReducer } from "react";
+import AppContext from "./app/context";
+import GetButton from "./components/GetButton";
+import DetailButton from "./components/DetailButton";
+import TotalAmount from "./components/TotalAmount";
+import Term from "./components/Term";
+import FeeByMonth from "./components/FeeByMonth";
+import reducer, { initialState } from "./reducer";
+import "./App.css";
 
-function App() {
+const App = () => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const contextValue = useMemo(() => ({ state, dispatch }), [state, dispatch]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppContext.Provider value={contextValue}>
+      <div className="container">
+        <div className="app-container">
+          <h1 className="app-title">Simulá tu cŕedito</h1>
+          <TotalAmount />
+          <Term />
+          <FeeByMonth />
+          <div className="button-container">
+            <GetButton />
+            <DetailButton />
+          </div>
+        </div>
+      </div>
+    </AppContext.Provider>
   );
-}
+};
 
 export default App;
